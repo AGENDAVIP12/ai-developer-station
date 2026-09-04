@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlteracoesRouteImport } from './routes/alteracoes'
+import { Route as ConversaRouteImport } from './routes/conversa'
+import { Route as HistoricoRouteImport } from './routes/historico'
+import { Route as IntegracoesRouteImport } from './routes/integracoes'
+import { Route as ProjetosRouteImport } from './routes/projetos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlteracoesRoute = AlteracoesRouteImport.update({
+  id: '/alteracoes',
+  path: '/alteracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConversaRoute = ConversaRouteImport.update({
+  id: '/conversa',
+  path: '/conversa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoricoRoute = HistoricoRouteImport.update({
+  id: '/historico',
+  path: '/historico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegracoesRoute = IntegracoesRouteImport.update({
+  id: '/integracoes',
+  path: '/integracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetosRoute = ProjetosRouteImport.update({
+  id: '/projetos',
+  path: '/projetos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alteracoes': typeof AlteracoesRoute
+  '/conversa': typeof ConversaRoute
+  '/historico': typeof HistoricoRoute
+  '/integracoes': typeof IntegracoesRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alteracoes': typeof AlteracoesRoute
+  '/conversa': typeof ConversaRoute
+  '/historico': typeof HistoricoRoute
+  '/integracoes': typeof IntegracoesRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alteracoes': typeof AlteracoesRoute
+  '/conversa': typeof ConversaRoute
+  '/historico': typeof HistoricoRoute
+  '/integracoes': typeof IntegracoesRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/alteracoes'
+    | '/conversa'
+    | '/historico'
+    | '/integracoes'
+    | '/projetos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/alteracoes'
+    | '/conversa'
+    | '/historico'
+    | '/integracoes'
+    | '/projetos'
+  id:
+    | '__root__'
+    | '/'
+    | '/alteracoes'
+    | '/conversa'
+    | '/historico'
+    | '/integracoes'
+    | '/projetos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlteracoesRoute: typeof AlteracoesRoute
+  ConversaRoute: typeof ConversaRoute
+  HistoricoRoute: typeof HistoricoRoute
+  IntegracoesRoute: typeof IntegracoesRoute
+  ProjetosRoute: typeof ProjetosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alteracoes': {
+      id: '/alteracoes'
+      path: '/alteracoes'
+      fullPath: '/alteracoes'
+      preLoaderRoute: typeof AlteracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conversa': {
+      id: '/conversa'
+      path: '/conversa'
+      fullPath: '/conversa'
+      preLoaderRoute: typeof ConversaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historico': {
+      id: '/historico'
+      path: '/historico'
+      fullPath: '/historico'
+      preLoaderRoute: typeof HistoricoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integracoes': {
+      id: '/integracoes'
+      path: '/integracoes'
+      fullPath: '/integracoes'
+      preLoaderRoute: typeof IntegracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projetos': {
+      id: '/projetos'
+      path: '/projetos'
+      fullPath: '/projetos'
+      preLoaderRoute: typeof ProjetosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlteracoesRoute: AlteracoesRoute,
+  ConversaRoute: ConversaRoute,
+  HistoricoRoute: HistoricoRoute,
+  IntegracoesRoute: IntegracoesRoute,
+  ProjetosRoute: ProjetosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
