@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConversaRouteImport } from './routes/conversa'
+import { Route as ProjetosRouteImport } from './routes/projetos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ConversaRoute = ConversaRouteImport.update({
   path: '/conversa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjetosRoute = ProjetosRouteImport.update({
+  id: '/projetos',
+  path: '/projetos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/conversa': typeof ConversaRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/conversa': typeof ConversaRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/conversa': typeof ConversaRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conversa'
+  fullPaths: '/' | '/conversa' | '/projetos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conversa'
-  id: '__root__' | '/' | '/conversa'
+  to: '/' | '/conversa' | '/projetos'
+  id: '__root__' | '/' | '/conversa' | '/projetos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConversaRoute: typeof ConversaRoute
+  ProjetosRoute: typeof ProjetosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConversaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projetos': {
+      id: '/projetos'
+      path: '/projetos'
+      fullPath: '/projetos'
+      preLoaderRoute: typeof ProjetosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConversaRoute: ConversaRoute,
+  ProjetosRoute: ProjetosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
