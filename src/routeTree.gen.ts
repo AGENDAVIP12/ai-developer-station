@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlteracoesRouteImport } from './routes/alteracoes'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as ConversaRouteImport } from './routes/conversa'
 import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as IntegracoesRouteImport } from './routes/integracoes'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AlteracoesRoute = AlteracoesRouteImport.update({
   id: '/alteracoes',
   path: '/alteracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConversaRoute = ConversaRouteImport.update({
@@ -50,6 +56,7 @@ const ProjetosRoute = ProjetosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alteracoes': typeof AlteracoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversa': typeof ConversaRoute
   '/historico': typeof HistoricoRoute
   '/integracoes': typeof IntegracoesRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alteracoes': typeof AlteracoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversa': typeof ConversaRoute
   '/historico': typeof HistoricoRoute
   '/integracoes': typeof IntegracoesRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/alteracoes': typeof AlteracoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversa': typeof ConversaRoute
   '/historico': typeof HistoricoRoute
   '/integracoes': typeof IntegracoesRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/alteracoes'
+    | '/configuracoes'
     | '/conversa'
     | '/historico'
     | '/integracoes'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/alteracoes'
+    | '/configuracoes'
     | '/conversa'
     | '/historico'
     | '/integracoes'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/alteracoes'
+    | '/configuracoes'
     | '/conversa'
     | '/historico'
     | '/integracoes'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlteracoesRoute: typeof AlteracoesRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
   ConversaRoute: typeof ConversaRoute
   HistoricoRoute: typeof HistoricoRoute
   IntegracoesRoute: typeof IntegracoesRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/alteracoes'
       fullPath: '/alteracoes'
       preLoaderRoute: typeof AlteracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conversa': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlteracoesRoute: AlteracoesRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
   ConversaRoute: ConversaRoute,
   HistoricoRoute: HistoricoRoute,
   IntegracoesRoute: IntegracoesRoute,
