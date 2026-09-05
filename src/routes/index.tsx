@@ -71,8 +71,8 @@ function Inicio() {
               Protótipo
             </span>
           </div>
-          <h2 className="mt-2 font-display text-xl font-semibold tracking-tight">{projeto.nome}</h2>
-          <p className="mt-1 text-sm text-muted-foreground">{projeto.descricao}</p>
+          <h2 className="mt-2 font-display text-xl font-semibold tracking-tight">{projeto?.nome}</h2>
+          <p className="mt-1 text-sm text-muted-foreground">{projeto?.descricao}</p>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {INTEGRACOES.map((i) => (
               <SeloNaoConectado key={i.id} rotulo={i.nome} />
