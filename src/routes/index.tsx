@@ -51,7 +51,7 @@ const ATALHOS = [
 ];
 
 function Inicio() {
-  const projeto = PROJETOS[0];
+  const projeto = PROJETOS[0]!;
 
   return (
     <AppShell>
